@@ -80,7 +80,7 @@ def getMostValuable(array):
     return highestIndex
 
 
-# print(getMostValuable(customer_list))
+print(getMostValuable(customer_list))
 
 
 
@@ -128,7 +128,7 @@ def getBySex(array, sex):
 
     return sex_list
     
-# print(getBySex(customer_list, 'f'))
+print(getBySex(customer_list, 'f'))
 
 
 #Question 4
@@ -142,7 +142,7 @@ def getCustomerWhoBought(array, category):
                 arrayCategory.append(array[i])
     return arrayCategory
 
-#print(getCustomerWhoBought(customer_list, "Food"))
+print(getCustomerWhoBought(customer_list, "Food"))
 
 #Question 5
 
@@ -160,7 +160,7 @@ def convertDate(arrayDates):
     return newDate
 
 arrayDates=["2019-03-12", "2019-05-15", "20-2006-13", "2020-05-16", "2020-06-05", "2020-05-08"]
-#print(convertDate(arrayDates))
+print(convertDate(arrayDates))
 
 #Question 6
 

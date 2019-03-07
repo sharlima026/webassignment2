@@ -51,7 +51,7 @@
         "name": "Bananas",
         "category": "Fruit",
         "value": "50",
-        "date": "2020-05-08"
+        "date": "05-2020-08"
     }]
 }   
 ];
@@ -71,14 +71,16 @@ function getMostValuable(array){
     }
     return highestIndex;
 }
-getMostValuable(list);
+// console.log(getMostValuable(list));
 
 //Question 2
 
 function addCustomer(array, customer){
-    for (let i=0; i<array.length; i++){
+    console.log(array.length);
+    var temp = array.length;
+    for (var i=0; i<temp; i++){
         if (array[i].name.localeCompare(customer.name) > 0){
-            array.splice(i, customer);
+            array.splice(i, 0, customer);
         }
     }
     return array;
@@ -94,16 +96,17 @@ let newCustomer = [{
         "date": "2019-03-12"
     }]
 }];
-addCustomer(list, newCustomer);
+
+// console.log(addCustomer(list, newCustomer));
 
 //Question 3
 
 function getBySex(array, sex){
-    if (sex.localeCompare("male")===0){
-        sex = 'm';
+    if (sex.localeCompare("male")===0 || sex.localeCompare("m")===0 || sex.localeCompare("Male")===0){
+        sex = 'M';
     }
-    if (sex.localeCompare("female")===0){
-        sex = 'f';
+    if (sex.localeCompare("female")===0 || sex.localeCompare("f")===0 || sex.localeCompare("Female")===0){
+        sex = 'F';
     }
     arraySex = [];
     for (let i=0; i<array.length; i++){
@@ -113,7 +116,7 @@ function getBySex(array, sex){
     }
     return arraySex;
 }
-getBySex(list, "Female");
+// console.log(getBySex(list, "f"));
 
 //Question 4
 
@@ -128,30 +131,41 @@ function getCustomerWhoBought(array, category){
     }
     return arrayCategory;
 }
-getCustomerWhoBought(list, "Drink");
+// console.log(getCustomerWhoBought(list, "Food"));
 
 //Question 5
-
-function convertDate(arrayDates){
-    dateObjects = [];
-    for (let i=0; i<arrayDates.length; i++){
-        let currentDate = new Date(arrayDates[i]);
+function convertDate(array){
+dateObjects=[];
+    for(let x=0; x<array.length; x++){
+        
+        let currentDate = new Date(array[x]);
+        currentDate = currentDate.toString("YYYY-mm-dd");
         dateObjects.push(currentDate);
+    }
+    for (let x=0; x<dateObjects.length; x++){
+        if (dateObjects[x].localeCompare("Invalid Date")===0){
+            dateObjects[x] = ("UNDEFINED");
+        }
     }
     return dateObjects;
 }
-convertDate(list);
+// arrayDates=["2019-03-12", "2019-05-15", "20-2006-13", "2020-05-16", "2020-06-05", "2020-05-08"];
+// console.log(convertDate(arrayDates));
 
 //Question 6
 
 function convertProductDates(array){
-    arrayStringDates = [];
-    for (let i=0; i<array.length; i++){ //loops through every customer
-        for (let j=0; j<array[i].products.length; j++){ //loops through every product for every customer
-            arrayStringDates.push(array[i].products[j].date);
+    dateObjects = [];
+    for (let i=0; i<array.length; i++){
+        for (let j=0; j<array[i].products.length; j++){
+            let currentDate = new Date(list[i].products[j].date);
+            currentDate = currentDate.toString("YYYY-mm-dd");
+            dateObjects.push(currentDate);
         }
     }
-    result = convertDate(arrayStringDates);
-    return result;
+    
+    convertDate(dateObjects);
+    return dateObjects;
+    
 }
-convertProductDates(list);
+console.log(convertProductDates(list));
