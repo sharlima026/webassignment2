@@ -1,4 +1,3 @@
-
 let list = [{
     "name": "Adam",
     "sex": "M",
@@ -52,18 +51,19 @@ let list = [{
         "name": "Bananas",
         "category": "Fruit",
         "value": "50",
-        "date": "2020-05-08"
+        "date": "05-2020-08"
     }]
 }   
 ];
 
+
 //Question 1
 
 function getMostValuable(array){
-    for (let i=0; i<array.length; i++){ //loops through every customer
+    for (let i=0; i<array.length; i++){ 
         highestIndex = 0;
         highestValue = 0;
-        for (let j=0; j<array[i].products.length; j++){ //loops through every product for every customer
+        for (let j=0; j<array[i].products.length; j++){ 
             if (array[i].products[j].value > highestValue) {
                 highestValue = array[i].products[j].value;
                 highestIndex = i;
@@ -77,23 +77,25 @@ module.exports.getMostValuable = getMostValuable;
 //Question 2
 
 function addCustomer(array, customer){
-    for (let i=0; i<array.length; i++){
+    console.log(array.length);
+    var temp = array.length;
+    for (var i=0; i<temp; i++){
         if (array[i].name.localeCompare(customer.name) > 0){
-            array.splice(i, customer);
+            array.splice(i, 0, customer);
         }
     }
     return array;
 }
-module.exports.addCustomer= addCustomer;
+module.exports.addCustomer = addCustomer;
 
 //Question 3
 
 function getBySex(array, sex){
-    if (sex.localeCompare("male")===0){
-        sex = 'm';
+    if (sex.localeCompare("male")===0 || sex.localeCompare("m")===0 || sex.localeCompare("Male")===0){
+        sex = 'M';
     }
-    if (sex.localeCompare("female")===0){
-        sex = 'f';
+    if (sex.localeCompare("female")===0 || sex.localeCompare("f")===0 || sex.localeCompare("Female")===0){
+        sex = 'F';
     }
     arraySex = [];
     for (let i=0; i<array.length; i++){
@@ -103,14 +105,14 @@ function getBySex(array, sex){
     }
     return arraySex;
 }
-module.exports.getBySex= getBySex;
+module.exports.getBySex = getBySex;
 
 //Question 4
 
 function getCustomerWhoBought(array, category){
     arrayCategory = [];
-    for (let i=0; i<array.length; i++){ //loops through every customer
-        for (let j=0; j<array[i].products.length; j++){ //loops through every product for every customer
+    for (let i=0; i<array.length; i++){ 
+        for (let j=0; j<array[i].products.length; j++){ 
             if (array[i].products[j].category.localeCompare(category)===0) {
                 arrayCategory.push(array[i]);
             }
@@ -118,30 +120,41 @@ function getCustomerWhoBought(array, category){
     }
     return arrayCategory;
 }
-module.exports.getCustomerWhoBought= getCustomerWhoBought;
+module.exports.getCustomerWhoBought = getCustomerWhoBought;
 
 //Question 5
-
-function convertDate(arrayDates){
-    dateObjects = [];
-    for (let i=0; i<arrayDates.length; i++){
-        let currentDate = new Date(arrayDates[i]);
+function convertDate(array){
+dateObjects=[];
+    for(let x=0; x<array.length; x++){
+        
+        let currentDate = new Date(array[x]);
+        currentDate = currentDate.toString("YYYY-mm-dd");
         dateObjects.push(currentDate);
+    }
+    for (let x=0; x<dateObjects.length; x++){
+        if (dateObjects[x].localeCompare("Invalid Date")===0){
+            dateObjects[x] = ("UNDEFINED");
+        }
     }
     return dateObjects;
 }
-module.exports.convertDate= convertDate;
+module.exports.convertDate = convertDate;
 
 //Question 6
 
 function convertProductDates(array){
-    arrayStringDates = [];
-    for (let i=0; i<array.length; i++){ //loops through every customer
-        for (let j=0; j<array[i].products.length; j++){ //loops through every product for every customer
-            arrayStringDates.push(array[i].products[j].date);
+    dateObjects = [];
+    for (let i=0; i<array.length; i++){
+        for (let j=0; j<array[i].products.length; j++){
+            let currentDate = new Date(list[i].products[j].date);
+            currentDate = currentDate.toString("YYYY-mm-dd");
+            dateObjects.push(currentDate);
         }
     }
-    result = convertDate(arrayStringDates);
-    return result;
+    
+    convertDate(dateObjects);
+    return dateObjects;
+    
 }
-module.exports.convertProductDates= convertProductDates;
+
+module.exports.convertProductDates = convertProductDates;

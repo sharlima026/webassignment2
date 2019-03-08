@@ -1,102 +1,52 @@
-//QUESTION 1
-class Movie{
-    constructor(){
-        this.uuid = "";
-        this.title = "";
-        this.year = "";
-        this.genres = null;
-        this.related = [];
-    }
+// module = require("./movieGenre")
+// let movie = Movie();
+// movie = Movie()
+// darkWorld = new Movie()
+// thor = new Movie()
+// action = new Genre()
+// action.name = "Action"
+// darkWorld.title = "Dark World"
+// thor.title = "Thor"
+// thor.genres = action.name
+// darkWorld.genres = action.name
+// darkWorld.addRelatedMovie(thor);
+// thor.addRelatedMovie(darkWorld);
+
+// console.log(thor.related[0].title)
+// console.log(thor.genres)
+
+//const Movie = require('./movieGenre').Movie;
+//const Genre = require('./movieGenre').Genre;
+//const assert = require('assert');
+
+//module = require('./movieGenre.js')
+
+
+let movie = require("../js/movieGenre");
+let Movie = movie.Movie;
+let genre = require("../js/movieGenre");
+let Genre = genre.Genre;
+
+
+aquaman = new Movie();
+aquaman.uuid = '001';
+aquaman.title = 'Aquaman';
+aquaman.year = 2018;
+
+bumblebee = new Movie();
+bumblebee.uuid = '002';
+bumblebee. title = 'Bumblebee';
+bumblebee.year = 2018;
+
+
+console.log('addRelatedMovie Test Cases');
+function test_addRelated(a, b){
+   
+   if (a.addRelatedMovie(b) === true){
+   
+       console.log('TEST PASSED');
+   } else {
+       console.log('TEST FAILED');
+   }
 }
-
-class Genre{
-    constructor(){
-        this.name = "";
-        this.movies = [];
-    }
-}
-
-
-
-function populate()
-{
-    let x = 0;
-    while (x >= 0){
-        uuid += "001 ";
-        title += "Why Did I Get Married? ";
-        year += "2000 ";
-        name += "Comedy ";
-        movies.push(title);
-
-        uuid += "002 ";
-        title += "Why Did I Get Married 2? ";
-        year += "2002 ";
-        name += "Comedy ";
-        movies.push(title);
-        
-        uuid += "003 ";
-        title += "Deadpool ";
-        year += "2014 ";
-        name += "Action ";
-        movies.push(title);
-        
-        uuid += "004 ";
-        title += "Titanic ";
-        year += "2000";
-        name += "Romance";
-        movies.push(title);
-
-        uuid += "005 ";
-        title += "Drag Me To Hell ";
-        year += "2001 ";
-        name += "Horror ";
-        movies.push(title);
-    }
-}
-//QUESTION 2
-function addRelatedMovie(movie){
-
-    if (movie instanceof Movie){
-        related.push(movie);
-        return true;
-    }
-    return false;
-}
-console.log(addRelatedMovie("Grey's Anatomy"));
-
-//QUESTION 3
-// function setGenre(genre)
-// {
-//     for (let x = 0; x < Genre.length(); x++)
-//     {
-
-//         if (Genre.name[x].localeCompare(genre) === 0)
-//         {
-//             genres = Genre[x].name;
-//         }
-//     }
-//     addRelatedMovie(movie);
-//     return false;
-// }
-// setGenre("Romance");
-
-// //QUESTION 4
-// function addMovie(movie)
-// {
-//     for (let x = 0; x < Movie.length(); x++)
-//     {
-//         if (Movie.title[x].localeCompare(movie) === 0)
-//         {
-//             for (let y=0; y<Genre.movies.length; y++)
-//             {
-//                 if (Genre.movies[y].localeCompare(movie) > 0)
-//                 {
-//                     movies.splice(y, movie);
-//                 }
-//             }
-//             return true;
-//         }
-//     }
-//     return false;
-// }
-// addMovie("Deadpool");
+test_addRelated(aquaman, bumblebee); 

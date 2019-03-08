@@ -1,22 +1,5 @@
 import locale
-class product:
-    def __init__(self, name=None, category=None, value=None, date=None):
-        self.name = name
-        self.category =  category
-        self.value = value
-        self.date = date
-
-class customer:
-    name = ""
-    sex = ""
-    country = ""
-    products = []
-
-    def __init__(self, name=None, sex=None, country=None, products=None):
-        self.name = name
-        self.sex = sex
-        self.country = country
-        self.products = product
+import datetime
 
 customer_list = [{
     "name": "Adam",
@@ -25,8 +8,8 @@ customer_list = [{
     "products": [{
         "name": "Peanut",
         "category": "Food",
-        "value": "15",
-        "date": "2019-03-12"
+        "value": 15,
+        "date": "20-2006-13"
     }]
 }, {
     "name": "Jane",
@@ -35,7 +18,7 @@ customer_list = [{
     "products": [{
         "name": "Ice-Cream",
         "category": "Dessert",
-        "value": "12",
+        "value": 12,
         "date": "2019-05-15"
     }]
 }, {
@@ -45,7 +28,7 @@ customer_list = [{
     "products": [{
         "name": "Canned Corn",
         "category": "Food",
-        "value": "20",
+        "value": 20,
         "date": "2019-06-13"
     }]
 }, {
@@ -55,12 +38,12 @@ customer_list = [{
     "products": [{
         "name": "Coffee Beans",
         "category": "Food",
-        "value": "80",
+        "value": 80,
         "date": "2020-05-16"
     }, {
         "name": "Cake Batter",
         "category": "Dessert",
-        "value": "30",
+        "value": 30,
         "date": "2020-06-05"
     }]
 }, {
@@ -70,7 +53,7 @@ customer_list = [{
     "products": [{
         "name": "Bananas",
         "category": "Fruit",
-        "value": "50",
+        "value": 50,
         "date": "2020-05-08"
     }]
 }   
@@ -81,62 +64,91 @@ customer_list = [{
 
 def getMostValuable(array):
     for i in range(0, len(array)):
+        # print(array[i]["products"])
         highestIndex = 0
         highestValue = 0
-        for j in range(0,len(array[i].products)):
-            if array[i].products[j].value > highestValue: 
-                highestValue = array[i].products[j].value
-                highestIndex = i
-    return highestIndex
 
+        for product in array[i]["products"]:
+            print(product)
+            if product["value"] > highestValue:
+                highestValue = product["value"]
+                highestIndex = i
+
+    return highestIndex
 
 
 #Question 2
 
 def addCustomer(array, customer):
     for i in range(0,len(array)):
-        if locale.strcoll(array[i].name, customer.name) > 0:
+        if locale.strcoll(array[i]["name"], customer["name"]) > 0:
             array.insert(i-1, customer)
     return array
+
 
 #Question 3
 
 def getBySex(array, sex):
-    if locale.strcoll(sex,"male")==0:
-        sex = 'm'
-    if locale.strcoll(sex,"female")==0:
-        sex = 'f'
-    arraySex = []
-    for i in range(0, len(array)):
-        if locale.strcoll(array[i].sex,sex)==0:
-            arraySex.append(array[i])
-    return arraySex
+    sex_list = []
+    sex_dict = {
+        "male": "M",
+        "female": "F",
+        'f': "F",
+        'm': 'M',
+        'F': "F",
+        'M': 'M'
+    }
+
+    keys = sex_dict.keys()
+
+    for customer in array:
+        if sex not in keys:
+            return "WAH KINDA BULLASS INPUT YOU GIVING ME. THERE ARE ONLY 2 GENDERS. I'M VEGAN!!!"
+
+        elif customer["sex"] == sex_dict[sex]:
+            sex_list.append(customer["name"])
+
+    return sex_list
+
 
 #Question 4
 
 def getCustomerWhoBought(array, category):
     arrayCategory = []
     for i in range(0,len(array)):
-        for j in range(0, array[i].products):
-            if locale.strcoll(array[i].products[j].category,category)==0: 
+        for j in range(0, len(array[i]["products"])):
+
+            if locale.strcoll(array[i]['products'][j]["category"],category) == 0: 
                 arrayCategory.append(array[i])
     return arrayCategory
+
+print(getCustomerWhoBought(customer_list, "Food"))
+
 
 #Question 5
 
 def convertDate(arrayDates):
-    dateObjects = []
+    newDate = []
     for i in range(0,len(arrayDates)):
         currentDate = arrayDates[i]
-        dateObjects.append(currentDate)
-    return dateObjects
+      
+        try:
+            datetime.datetime.strptime(currentDate, '%Y-%m-%d').date()
+            newDate.append(currentDate)
+        except ValueError:
+            newDate.append("UNDEFINED")
+
+    return newDate
+
 
 #Question 6
 
-def convertProductDates(array):
+def convertProductDates(customer_list):
     arrayStringDates = []
-    for i in range(0,len(array)):
-        for j in range(0,array[i].products):
-            arrayStringDates.append(array[i].products[j].date)
-    result = convertDate(arrayStringDates)
-    return result
+    for customer in customer_list:
+        
+        products = customer["products"]
+        for product in products:
+            arrayStringDates.append(product["date"])
+
+    return convertDate(arrayStringDates)
