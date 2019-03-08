@@ -1,5 +1,5 @@
-var first_names = ["Aaron","Tom","Brock","Gyallis","Rick"];
-var last_names = ["Rodgers","Brady","Lesnar","Banton","Ross"];
+var first_names = ["ashida","tom","shelly","kyle","nicholas"];
+var last_names = ["ali","brady","ann","defreitas","mendez"];
 
 function mergeHandler(arr1,arr2,func){
     return (func(arr1,arr2))

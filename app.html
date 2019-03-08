@@ -1,51 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Sharlima Seebaran | Ashida Ali">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form</title>
 </head>
+
 <body>
-    <form id = "createGenre">
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" class="form-control" id="Gname" placeholder="Enter Genre Name" name="name">
-        </div>
-    </form>
-    <button onClick="submit()">submit</button>
 
-    <form id = "createMovie">
+    <form id = "createGenre" action="" method="" onsubmit="submit()" class="formstuff">
+                      
+        <fieldset>
+        
+            <legend>Create a Genre</legend>
+        
             <div class="form-group">
-                    <label for="name">UUID:</label>
-                    <input type="text" class="form-control" id="uuid" placeholder="Enter Movie Name" name="name">
+                <label for="textinput">Name of Genre: </label>  
+                <div>
+                    <input required id="genreName" name="textinput" type="text" placeholder="Enter a Genre of Movies" class="form-control">
                 </div>
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" class="form-control" id="Mname" placeholder="Enter Movie Name" name="name">
-        </div>
-        <div class="form-group">
-            <label for="name">Year:</label>
-            <input type="text" class="form-control" id="year" placeholder="Enter Movie Year" name="name">
-        </div>
-        <div class="form-group">
-            <label for="genre">Genre:</label>
-            <select id="genres" onload="dropdown()" placeholder=" "></select>
-        </div>
-        
+            </div>
+            
+            <br>
+            <button onClick="submit()">Submit</button>
+
+        </fieldset>
+
     </form>
-    <button onClick="addMovie();return false;">Submit</button>
 
-    <div id = "genreList">
+    <br> <br> <br>
 
-    </div>
+    <form id = "createMovie" action="" method="" onsubmit="submit()" class="formstuff">
 
-    <table id = "movieList">
-        
-    </table>
-    <script src="js/movieGenre.js"></script>
-    <script src="js/util.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/app.js"></script>
+        <fieldset>
+
+            <legend>Add Movie to Related Genre</legend>
+
+            <div class="form-group">
+                <label for="textinput">UUID: </label>
+                <div>
+                    <input required id="name" name="textinput" type="text" placeholder="avenger" class="form-control input-md" ="">
+                </div>
+            </div>
+
+            <br>
+
+            <div class="form-group">
+                <label for="textinput">Name of Movie: </label>
+                <div>
+                    <input required id="name" name="textinput" type="text" placeholder="Avengers: Infinity War" class="form-control input-md" ="">
+                </div>
+            </div>
+            
+            <br>
+
+            <div class="form-group">
+                <label for="textinput">Year of Release: </label>
+                <div>
+                    <input required id="year" name="textinput" type="text" placeholder="2018" class="form-control input-md" ="">
+                </div>
+            </div>
+            
+            <br>
+
+            <div class="form-group">
+                <label for="textinput">Genre of Movie: </label>
+                <div>
+                    <select required id="genre" id="genres" onload="dropdown()" placeholder="Action"></select>
+                </div>
+            </div>
+
+            <br><br>
+            <button onClick="addMovie(); return false;">Submit</button>
+    
+        </fieldset>
+
+    </form>
+
+    
+    <div id = "genreList"></div>
+
+    <table id = "movieList"></table>
+
+    <script src="./js/movieGenre.js"></script>
+    <script src="./js/util.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/app.js"></script>
+
 </body>
+
 </html>

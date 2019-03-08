@@ -1,6 +1,6 @@
 
-first_names = ["Aaron", "Tom", "Brock", "Gyallis", "Rick"]
-last_names = ["Rodgers", "Brady", "Lesnar", "Banton", "Ross"]
+first_names = ["ashida","tom","shelly","kyle","nicholas"]
+last_names = ["ali","brady","ann","defreitas","mendez"]
 
 
 def merge2Single (arr1,arr2):
@@ -18,14 +18,8 @@ def merge2Object (arr1,arr2):
     for i in range (0,len(arr1)):
         d = {'firstname':arr1[i],'lastname':arr2[i]}
         names.append(d)
-
-    
-    
+        
     return(names)
-
-     
-    
-
 
 def mergeHandler (func,arr1,arr2):
     return (func(arr1, arr2))
